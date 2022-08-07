@@ -44,22 +44,30 @@ const About = () => {
           <h1 className='font-bold text-2xl'>About Me</h1>
           <div className='p-2'></div>
           <section>
-            Growing up, I always had an obsession for technology. Jailbreaking my phone, creating
-            Minecraft mods, and making small websites and games was a big part of my childhood and
-            developed my problem solving skills.
+            <p>
+              Growing up, I always had an obsession for technology. Jailbreaking my phone, creating
+              Minecraft mods, and making small websites and games was a big part of my childhood and
+              developed my problem solving skills.
+            </p>
+            <div className='p-1'></div>
+            <p>
+              Today I&apos;m a fullstack dev, working on creating interactive and responsive web
+              apps with a focus on user experience and desgin.
+            </p>
+            <div className='p-1'></div>
+            <p>
+              Some of my interests include creating and consuming music,{' '}
+              <a
+                target='_blank'
+                rel='noopener noreferrer'
+                className='font-bold underline'
+                href='https://art.kalmarv.xyz/'>
+                generative art
+              </a>
+              , and 3D modeling.
+            </p>
           </section>
-          <div className='p-1'></div>
-          <section>
-            Today I&apos;m a fullstack dev, working on creating interactive and responsive web apps
-            with a focus on user experience and desgin.
-          </section>
-          <div className='p-1'></div>
-          <section>
-            Some of my interests include creating and consuming music, generative art, and 3D
-            modeling.
-          </section>
-        </MultipleElements>
-        <MultipleElements open={isVisible} delay={500}>
+          <div className='p-2'></div>
           <h1 className='font-bold text-2xl'>Technology</h1>
           <div className='p-2'></div>
           <section>Here&apos;s some of the technologies I use and love the most.</section>
