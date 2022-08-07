@@ -1,10 +1,18 @@
 import { IParallax, Parallax, ParallaxLayer } from '@react-spring/parallax'
+import { useAtom } from 'jotai'
 import type { NextPage } from 'next'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
+import About from '../components/sections/about'
 import Landing from '../components/sections/landing'
+import { pageAtom } from '../utils/store'
+
+const linkStyle = (pageAtom: number, pageNumber: number) =>
+  `transition duration-300 ease-in-out ${
+    pageAtom === pageNumber ? 'text-white' : 'text-black'
+  } hover:cursor-pointer`
 
 const Home: NextPage = () => {
-  const [page, setPage] = useState(0)
+  const [page, setPage] = useAtom(pageAtom)
   const parallax = useRef<IParallax>(null)
 
   const scroll = (to: number) => {
@@ -18,25 +26,21 @@ const Home: NextPage = () => {
     <>
       <div className='fixed top-0 left-0 z-50'>
         <div className='flex p-4 font-bold gap-4'>
-          <button
-            className={`${page === 0 ? 'text-white' : 'text-black'}`}
-            onClick={() => scroll(0)}>
+          <a className={linkStyle(page, 0)} onClick={() => scroll(0)}>
             Home
-          </button>
-          <button
-            className={`${page === 1 ? 'text-white' : 'text-black'}`}
-            onClick={() => scroll(1)}>
+          </a>
+          <a className={linkStyle(page, 1)} onClick={() => scroll(1)}>
             About
-          </button>
+          </a>
         </div>
       </div>
 
       <Parallax pages={2} ref={parallax}>
-        <ParallaxLayer offset={0} speed={0.5}>
+        <ParallaxLayer offset={0} speed={1}>
           <Landing />
         </ParallaxLayer>
-        <ParallaxLayer offset={1} speed={0.5}>
-          <div className=''>hi</div>
+        <ParallaxLayer offset={1} speed={1}>
+          <About />
         </ParallaxLayer>
       </Parallax>
     </>

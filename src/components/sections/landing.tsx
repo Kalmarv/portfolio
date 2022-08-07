@@ -1,10 +1,14 @@
+import { useAtom } from 'jotai'
+import { useEffect, useRef } from 'react'
 import { useTrail, config, a, useSpring } from 'react-spring'
+import { useIntersectionObserver } from 'usehooks-ts'
+import { pageAtom } from '../../utils/store'
 
-const Intro: React.FC<{ children: JSX.Element[] }> = ({ children }) => {
+const Intro: React.FC<{ open: boolean; children: JSX.Element[] }> = ({ open, children }) => {
   const trail = useTrail(children.length, {
     config: config.stiff,
-    opacity: 1,
-    x: 0,
+    opacity: open ? 1 : 0,
+    x: open ? 0 : 40,
     from: { opacity: 0, x: 40 },
   })
   return (
@@ -18,12 +22,12 @@ const Intro: React.FC<{ children: JSX.Element[] }> = ({ children }) => {
   )
 }
 
-const Info: React.FC<{ children: JSX.Element[] }> = ({ children }) => {
+const Info: React.FC<{ open: boolean; children: JSX.Element[] }> = ({ open, children }) => {
   const trail = useTrail(children.length, {
     config: config.stiff,
-    opacity: 1,
+    opacity: open ? 1 : 0,
     from: { opacity: 0 },
-    delay: 750,
+    delay: open ? 750 : 0,
   })
   return (
     <div className='flex flex-row'>
@@ -37,23 +41,32 @@ const Info: React.FC<{ children: JSX.Element[] }> = ({ children }) => {
 }
 
 const Landing = () => {
+  const [, setPage] = useAtom(pageAtom)
+  const ref = useRef<HTMLDivElement | null>(null)
+  const entry = useIntersectionObserver(ref, { threshold: 0.75 })
+  const isVisible = !!entry?.isIntersecting
+
+  useEffect(() => {
+    if (isVisible) setPage(0)
+  }, [isVisible, setPage])
+
   const spring = useSpring({
-    x: 0,
-    opacity: 1,
+    x: isVisible ? 0 : 40,
+    opacity: isVisible ? 1 : 0,
     from: { opacity: 0, x: 40 },
     config: config.stiff,
-    delay: 2000,
+    delay: isVisible ? 1500 : 0,
   })
 
   return (
     <>
-      <div className='flex flex-col justify-center h-screen place-items-center'>
-        <Intro>
+      <div className='flex flex-col justify-center h-screen place-items-center' ref={ref}>
+        <Intro open={isVisible}>
           <span className='text-white'>Hello.</span>
           <span>{"I'm Kalmarv"}</span>
         </Intro>
         <div className='p-4'></div>
-        <Info>
+        <Info open={isVisible}>
           <span>Developer</span>
           <span>|</span>
           <span>Designer</span>
