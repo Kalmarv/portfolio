@@ -7,6 +7,7 @@ specifiers:
   '@types/node': 18.0.0
   '@types/react': 18.0.14
   '@types/react-dom': 18.0.5
+  '@use-gesture/react': ^10.2.17
   autoprefixer: ^10.4.8
   eslint: 8.18.0
   eslint-config-next: 12.2.3
@@ -23,6 +24,7 @@ specifiers:
 dependencies:
   '@react-spring/parallax': 9.5.2_biqbaboplfbrettd7655fr4n2y
   '@react-spring/web': 9.5.2_biqbaboplfbrettd7655fr4n2y
+  '@use-gesture/react': 10.2.17_react@18.2.0
   jotai: 1.7.7_react@18.2.0
   next: 12.2.3_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
@@ -469,6 +471,19 @@ packages:
       '@typescript-eslint/types': 5.32.0
       eslint-visitor-keys: 3.3.0
     dev: true
+
+  /@use-gesture/core/10.2.17:
+    resolution: {integrity: sha512-62hCybe4x6oGZ1/JA9gSYIdghV1FqxCdvYWt9SqCEAAikwT1OmVl2Q/Uu8CP636L57D+DfXtw6PWM+fdhr4oJQ==}
+    dev: false
+
+  /@use-gesture/react/10.2.17_react@18.2.0:
+    resolution: {integrity: sha512-Vfrp1KgdYn/kOEUAYNXtGBCl2dr38s3G6rru1TOPs+cVUjfNyNxvJK56grUyJ336N3rQLK8F9G7+FfrHuc3g/Q==}
+    peerDependencies:
+      react: '>= 16.8.0'
+    dependencies:
+      '@use-gesture/core': 10.2.17
+      react: 18.2.0
+    dev: false
 
   /acorn-jsx/5.3.2_acorn@8.8.0:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
