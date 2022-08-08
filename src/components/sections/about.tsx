@@ -1,10 +1,8 @@
 import { useAtom } from 'jotai'
-import Image from 'next/image'
 import { useEffect, useRef, useState } from 'react'
-import { useTrail, config, a, useSpring } from 'react-spring'
+import { useTrail, config, a, useSpring, easings } from 'react-spring'
 import { useIntersectionObserver } from 'usehooks-ts'
 import { pageAtom } from '../../utils/store'
-import { useDrag, useHover } from '@use-gesture/react'
 
 type animationProps = {
   open: boolean
@@ -73,19 +71,28 @@ const AnimatedIcons: React.FC<animationProps> = ({
 }
 
 const Icon: React.FC<{ icon: string }> = ({ icon }) => {
-  const [props, api] = useSpring(
-    () => ({
-      transform: 'rotateY(0deg)',
-    }),
-    []
-  )
+  const [isHovered, setIsHovered] = useState(false)
+  const style = useSpring({
+    transform: isHovered ? 'rotateY(180deg)' : 'rotateY(0deg)',
+  })
+
+  useEffect(() => {
+    if (!isHovered) return
+    const timeoutId = window.setTimeout(() => setIsHovered(false), 250)
+    return () => window.clearTimeout(timeoutId)
+  }, [isHovered])
+
+  const trigger = () => {
+    setIsHovered(true)
+  }
 
   return (
+    // because the image is an a.img, also I optimized them myself using SVGOMG
     // eslint-disable-next-line @next/next/no-img-element
     <a.img
-      onMouseEnter={() => api.start({ transform: 'rotateY(360deg)' })}
-      onMouseLeave={() => api.start({ transform: 'rotateY(0deg)' })}
-      style={{ ...props, transformStyle: 'preserve-3d' }}
+      onMouseEnter={trigger}
+      onTouchStart={trigger}
+      style={style}
       alt={icon}
       src={`/icons/${icon}.svg`}
       width={40}
