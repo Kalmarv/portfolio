@@ -4,6 +4,7 @@ import type { NextPage } from 'next'
 import { useRef } from 'react'
 import Logo from '../components/logo'
 import About from '../components/sections/about'
+import Contact from '../components/sections/contact'
 import Landing from '../components/sections/landing'
 import { pageAtom } from '../utils/store'
 
@@ -38,15 +39,21 @@ const Home: NextPage = () => {
           <a className={linkStyle(page, 1)} onClick={() => scroll(1)}>
             About
           </a>
+          <a className={linkStyle(page, 2)} onClick={() => scroll(2)}>
+            Contact
+          </a>
         </div>
       </div>
 
-      <Parallax pages={2} ref={parallax}>
+      <Parallax pages={3} ref={parallax}>
         <ParallaxLayer offset={0} speed={1}>
           <Landing />
         </ParallaxLayer>
         <ParallaxLayer offset={1} speed={1}>
           <About />
+        </ParallaxLayer>
+        <ParallaxLayer offset={2} speed={1}>
+          <Contact />
         </ParallaxLayer>
       </Parallax>
     </>

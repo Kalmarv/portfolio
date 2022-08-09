@@ -176,6 +176,7 @@ const About = () => {
           delay={1000}>
           {icons
             // yeah super ugly, but I want to remove one element if the screen is small
+            // to make i5 5x3 instead of 4x4
             .filter((icon) => (screen!.width <= 640 ? icon !== 'Python' : true))
             .map((icon) => (
               <Icon key={icon} icon={icon} />
