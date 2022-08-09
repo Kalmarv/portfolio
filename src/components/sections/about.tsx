@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useTrail, config, a, useSpring, easings } from 'react-spring'
 import { useIntersectionObserver } from 'usehooks-ts'
 import { pageAtom } from '../../utils/store'
+import { useScreen } from 'usehooks-ts'
 
 type animationProps = {
   open: boolean
@@ -106,6 +107,7 @@ const About = () => {
   const ref = useRef<HTMLDivElement | null>(null)
   const entry = useIntersectionObserver(ref, { threshold: 0.75 })
   const isVisible = !!entry?.isIntersecting
+  const screen = useScreen()
   const icons = [
     'TypeScript',
     'JavaScript',
@@ -168,11 +170,18 @@ const About = () => {
           <section>Here&apos;s some of the technologies I use and love the most.</section>
         </AnimatedChildren>
         <div className='p-4'></div>
-        <AnimatedIcons open={isVisible} containerStyle='grid grid-cols-4 gap-6' delay={1000}>
-          {icons.map((icon) => (
-            <Icon key={icon} icon={icon} />
-          ))}
+        <AnimatedIcons
+          open={isVisible}
+          containerStyle='grid grid-cols-5 sm:grid-cols-4 gap-6'
+          delay={1000}>
+          {icons
+            // yeah super ugly, but I want to remove one element if the screen is small
+            .filter((icon) => (screen!.width <= 640 ? icon !== 'Python' : true))
+            .map((icon) => (
+              <Icon key={icon} icon={icon} />
+            ))}
         </AnimatedIcons>
+        <div className='p-8 sm:p-0'></div>
       </div>
     </>
   )

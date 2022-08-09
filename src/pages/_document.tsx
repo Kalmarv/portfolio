@@ -1,12 +1,19 @@
 import { Html, Head, Main, NextScript } from 'next/document'
 
-type documentProps = { title: string; description: string; ogImgPath: string; siteURL: string }
+type documentProps = {
+  title: string
+  description: string
+  ogImgPath: string
+  siteURL: string
+  theme: string
+}
 
 const HTMLHead: React.FC<documentProps> = ({
   title,
   description,
   ogImgPath,
   siteURL,
+  theme,
 }): JSX.Element => {
   const ogImageURL = `${siteURL}${ogImgPath}`
 
@@ -14,8 +21,8 @@ const HTMLHead: React.FC<documentProps> = ({
     <>
       <title>{title}</title>
       <meta name='viewport' content='initial-scale=1.0, width=device-width' />
-      <meta name='msapplication-TileColor' content='#e4d8b4' />
-      <meta name='theme-color' content='#e4d8b4' />
+      <meta name='msapplication-TileColor' content={theme} />
+      <meta name='theme-color' content={theme} />
 
       <meta name='author' content='Kalmarv' />
       <meta name='descriptionription' content={description} />
@@ -37,7 +44,7 @@ const HTMLHead: React.FC<documentProps> = ({
       <link rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png' />
       <link rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png' />
       <link rel='manifest' href='/site.webmanifest' />
-      <meta name='msapplication-TileColor' content='#da532c' />
+      <meta name='msapplication-TileColor' content={theme} />
       <meta name='theme-color' content='#ffffff' />
     </>
   )
@@ -52,6 +59,7 @@ export default function Document() {
           description="Kalmarv's Portfolio"
           ogImgPath='/PortfolioOG.png'
           siteURL='https://portfolio.kalmarv.xyz/'
+          theme='#ff8f88'
         />
       </Head>
       <body>
