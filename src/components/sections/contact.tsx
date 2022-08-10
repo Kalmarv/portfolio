@@ -21,9 +21,6 @@ const Contact = () => {
   const sendEmail = () => {
     fetch('/api/send-email', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
       body: JSON.stringify({
         name: data?.name ?? 'No name',
         email: data?.email ?? 'No email',
