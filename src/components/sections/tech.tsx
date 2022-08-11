@@ -103,6 +103,7 @@ const Tech = () => {
 
   return (
     <>
+      <div className='py-8'></div>
       <div className='flex flex-col justify-center place-items-center' ref={ref}>
         <div className='max-w-sm p-2'>
           <h1 className='font-bold text-2xl'>Tech Stack</h1>
