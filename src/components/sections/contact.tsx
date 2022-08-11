@@ -29,8 +29,12 @@ const Contact = () => {
       <div className='py-8'></div>
       <div className='flex flex-col justify-center place-items-center' ref={ref}>
         <div className='max-w-sm p-2 w-full'>
-          <h1 className='text-3xl font-bold text-center'>Contact Me</h1>
-          <div className='py-4'></div>
+          <h1 className='text-3xl font-bold'>Contact Me</h1>
+          <div className='py-2'></div>
+          <p>
+            If you have any questions, comments, or concerns, please feel free to reach out to me.
+          </p>
+          <div className='py-2'></div>
           <form
             onSubmit={handleSubmit((data) => {
               setData(data as formData)
@@ -39,12 +43,12 @@ const Contact = () => {
             <div className='flex flex-col justify-center place-items-center'>
               <div className='grid grid-cols-2'>
                 <input
-                  className='bg-branding-dark rounded p-2 mx-2'
+                  className='bg-branding-dark rounded p-2 mr-2'
                   {...register('name')}
                   placeholder='Name'
                 />
                 <input
-                  className='bg-branding-dark rounded p-2 mx-2'
+                  className='bg-branding-dark rounded p-2 ml-2'
                   {...register('email')}
                   placeholder='Email'
                 />
@@ -62,6 +66,7 @@ const Contact = () => {
           </form>
         </div>
       </div>
+      <div className='py-8'></div>
     </>
   )
 }
