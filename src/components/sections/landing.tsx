@@ -1,8 +1,6 @@
-import { useAtom } from 'jotai'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTrail, config, a, useSpring } from 'react-spring'
 import { useIntersectionObserver } from 'usehooks-ts'
-import { pageAtom } from '../../utils/store'
 
 const Intro: React.FC<{ open: boolean; children: JSX.Element[] }> = ({ open, children }) => {
   const trail = useTrail(children.length, {
@@ -41,32 +39,33 @@ const Info: React.FC<{ open: boolean; children: JSX.Element[] }> = ({ open, chil
 }
 
 const Landing = () => {
-  const [, setPage] = useAtom(pageAtom)
+  const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement | null>(null)
-  const entry = useIntersectionObserver(ref, { threshold: 0.75 })
+  const entry = useIntersectionObserver(ref, { threshold: 0.5 })
   const isVisible = !!entry?.isIntersecting
 
   useEffect(() => {
-    if (isVisible) setPage(0)
-  }, [isVisible, setPage])
+    if (isVisible) setOpen(true)
+  }, [isVisible])
 
   const spring = useSpring({
-    x: isVisible ? 0 : 40,
-    opacity: isVisible ? 1 : 0,
+    x: open ? 0 : 40,
+    opacity: open ? 1 : 0,
     from: { opacity: 0, x: 40 },
     config: config.stiff,
-    delay: isVisible ? 1500 : 0,
+    delay: open ? 1500 : 0,
   })
 
   return (
     <>
-      <div className='flex flex-col justify-center h-screen place-items-center' ref={ref}>
-        <Intro open={isVisible}>
+      <div className='py-16'></div>
+      <div className='flex flex-col justify-center place-items-center' ref={ref}>
+        <Intro open={open}>
           <span className='text-white'>Hello.</span>
           <span>{"I'm Kalmarv"}</span>
         </Intro>
         <div className='p-4'></div>
-        <Info open={isVisible}>
+        <Info open={open}>
           <span>Developer</span>
           <span>|</span>
           <span>Designer</span>
