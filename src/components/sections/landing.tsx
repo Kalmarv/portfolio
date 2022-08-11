@@ -38,6 +38,37 @@ const Info: React.FC<{ open: boolean; children: JSX.Element[] }> = ({ open, chil
   )
 }
 
+const DownArrow = () => {
+  const style = useSpring({
+    from: { y: 0, opacity: 0 },
+    to: async (next) => {
+      let toggle = 5
+      while (true) {
+        await next({
+          y: toggle,
+          opacity: 1,
+        })
+        toggle = toggle === 5 ? 0 : 5
+      }
+    },
+    config: { mass: 75, tension: 500, friction: 0 },
+    delay: 2000,
+  })
+
+  return (
+    <a.svg
+      xmlns='http://www.w3.org/2000/svg'
+      className='h-6 w-6'
+      fill='none'
+      viewBox='0 0 24 24'
+      stroke='currentColor'
+      strokeWidth={2}
+      style={style}>
+      <path strokeLinecap='round' strokeLinejoin='round' d='M19 13l-7 7-7-7m14-8l-7 7-7-7' />
+    </a.svg>
+  )
+}
+
 const Landing = () => {
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement | null>(null)
@@ -58,8 +89,7 @@ const Landing = () => {
 
   return (
     <>
-      <div className='py-16'></div>
-      <div className='flex flex-col justify-center place-items-center' ref={ref}>
+      <div className='flex flex-col justify-center h-screen place-items-center' ref={ref}>
         <Intro open={open}>
           <span className='text-white'>Hello.</span>
           <span>{"I'm Kalmarv"}</span>
@@ -77,6 +107,8 @@ const Landing = () => {
           I&apos;m a full-stack developer with a passion for building beautiful, responsive, and
           fast websites.
         </a.p>
+        <div className='p-4'></div>
+        <DownArrow />
       </div>
     </>
   )
