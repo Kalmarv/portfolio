@@ -38,18 +38,18 @@ const Contact = () => {
             <div className='flex flex-col justify-center place-items-center'>
               <div className='grid grid-cols-2'>
                 <input
-                  className='bg-branding-dark rounded p-2 mr-2'
+                  className='bg-branding-dark rounded p-2 mr-2 text-white'
                   {...register('name')}
                   placeholder='Name'
                 />
                 <input
-                  className='bg-branding-dark rounded p-2 ml-2'
+                  className='bg-branding-dark rounded p-2 ml-2 text-white'
                   {...register('email')}
                   placeholder='Email'
                 />
               </div>
               <textarea
-                className='bg-branding-dark w-full h-40 rounded m-4 p-2'
+                className='bg-branding-dark w-full h-40 rounded m-4 p-2 text-white'
                 {...register('message')}
                 placeholder='Type your message here'
               />
