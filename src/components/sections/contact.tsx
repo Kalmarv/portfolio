@@ -1,14 +1,36 @@
 import { useEffect, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useIntersectionObserver } from 'usehooks-ts'
+import { useIntersectionObserver, useWindowSize } from 'usehooks-ts'
+import Confetti from 'react-confetti'
+
+const WOW: React.FC<{ party: boolean }> = ({ party }) => {
+  const { width, height } = useWindowSize()
+  return (
+    <div className='fixed top-0 left-0'>
+      <Confetti
+        numberOfPieces={party ? 500 : 0}
+        onConfettiComplete={(confetti) => {
+          confetti?.reset()
+        }}
+        width={width}
+        height={height}
+      />
+    </div>
+  )
+}
 
 const Contact = () => {
   type formData = { name: string; email: string; message: string }
   const ref = useRef<HTMLDivElement | null>(null)
   const entry = useIntersectionObserver(ref, { threshold: 0.75 })
   const isVisible = !!entry?.isIntersecting
-
   const { register, handleSubmit } = useForm()
+  const [party, setParty] = useState(false)
+
+  useEffect(() => {
+    if (party) setParty(true)
+    setTimeout(() => setParty(false), 1000)
+  }, [party])
 
   useEffect(() => {}, [isVisible])
 
@@ -21,10 +43,12 @@ const Contact = () => {
         message: data?.message,
       }),
     })
+    setParty(true)
   }
 
   return (
     <>
+      <WOW party={party} />
       <div className='py-8'></div>
       <div className='flex flex-col justify-center place-items-center' ref={ref}>
         <div className='max-w-sm md:max-w-lg p-2 w-full'>
@@ -38,18 +62,18 @@ const Contact = () => {
             <div className='flex flex-col justify-center place-items-center'>
               <div className='grid grid-cols-2 w-full gap-4'>
                 <input
-                  className='bg-branding-dark rounded p-2 text-white'
+                  className='bg-branding-dark rounded p-2 text-white md:text-xl'
                   {...register('name')}
                   placeholder='Name'
                 />
                 <input
-                  className='bg-branding-dark rounded p-2 text-white'
+                  className='bg-branding-dark rounded p-2 text-white md:text-xl'
                   {...register('email')}
                   placeholder='Email'
                 />
               </div>
               <textarea
-                className='bg-branding-dark w-full h-40 rounded m-4 p-2 text-white'
+                className='bg-branding-dark w-full h-40 rounded m-4 p-2 text-white md:text-xl'
                 {...register('message')}
                 placeholder='Type your message here'
               />

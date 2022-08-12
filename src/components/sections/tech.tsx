@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { useTrail, config, a, useSpring, easings } from 'react-spring'
-import { useIntersectionObserver, useMediaQuery } from 'usehooks-ts'
+import { useTrail, config, a, useSpring } from 'react-spring'
+import { useIntersectionObserver } from 'usehooks-ts'
 
 type animationProps = {
   open: boolean
@@ -47,7 +47,6 @@ const Icon: React.FC<{ icon: string }> = ({ icon }) => {
   const style = useSpring({
     transform: isHovered ? 'rotateY(180deg)' : 'rotateY(0deg)',
   })
-  const isMedium = useMediaQuery('(min-width: 768px)')
 
   useEffect(() => {
     if (!isHovered) return
@@ -62,15 +61,17 @@ const Icon: React.FC<{ icon: string }> = ({ icon }) => {
   return (
     // because the image is an a.img, also I optimized them myself using SVGOMG
     // eslint-disable-next-line @next/next/no-img-element
-    <a.img
-      onMouseEnter={trigger}
-      onTouchStart={trigger}
-      style={style}
-      alt={icon}
-      src={`/icons/${icon}.svg`}
-      width={isMedium ? 60 : 40}
-      height={isMedium ? 60 : 40}
-    />
+    <div className='w-12 h-12 md:h-14 md:w-14'>
+      <a.img
+        onMouseEnter={trigger}
+        onTouchStart={trigger}
+        style={style}
+        alt={icon}
+        src={`/icons/${icon}.svg`}
+        width='100%'
+        height='100%'
+      />
+    </div>
   )
 }
 
