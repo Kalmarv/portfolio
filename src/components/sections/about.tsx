@@ -50,22 +50,25 @@ const About = () => {
   return (
     <>
       <div className='flex flex-col justify-center place-items-center' ref={ref}>
-        <AnimatedChildren open={open} containerStyle='max-w-sm p-2' outerStyle='relative w-full'>
-          <h1 className='font-bold text-2xl'>About Me</h1>
+        <AnimatedChildren
+          open={open}
+          containerStyle='max-w-sm md:max-w-lg p-2'
+          outerStyle='relative w-full'>
+          <h1 className='font-bold text-2xl md:text-3xl'>About Me</h1>
           <div className='p-2'></div>
           <section>
-            <p>
+            <p className='md:text-xl'>
               Growing up, I always had an obsession for technology. Jailbreaking my phone, creating
               Minecraft mods, and making small websites and games was a big part of my childhood and
               developed my problem solving skills.
             </p>
             <div className='p-1'></div>
-            <p>
+            <p className='md:text-xl'>
               Today I&apos;m a fullstack dev, working on creating interactive and responsive web
               apps with a focus on user experience and desgin.
             </p>
             <div className='p-1'></div>
-            <p>
+            <p className='md:text-xl'>
               Some of my interests include creating and consuming music,{' '}
               <a
                 target='_blank'

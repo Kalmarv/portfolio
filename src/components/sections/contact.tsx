@@ -27,23 +27,23 @@ const Contact = () => {
     <>
       <div className='py-8'></div>
       <div className='flex flex-col justify-center place-items-center' ref={ref}>
-        <div className='max-w-sm p-2 w-full'>
-          <h1 className='text-3xl font-bold'>Contact Me</h1>
+        <div className='max-w-sm md:max-w-lg p-2 w-full'>
+          <h1 className='text-2xl md:text-3xl font-bold'>Contact Me</h1>
           <div className='py-2'></div>
-          <p>
+          <p className='md:text-xl'>
             If you have any questions, comments, or concerns, please feel free to reach out to me.
           </p>
           <div className='py-2'></div>
           <form onSubmit={handleSubmit((data) => sendEmail(data as formData))}>
             <div className='flex flex-col justify-center place-items-center'>
-              <div className='grid grid-cols-2'>
+              <div className='grid grid-cols-2 w-full gap-4'>
                 <input
-                  className='bg-branding-dark rounded p-2 mr-2 text-white'
+                  className='bg-branding-dark rounded p-2 text-white'
                   {...register('name')}
                   placeholder='Name'
                 />
                 <input
-                  className='bg-branding-dark rounded p-2 ml-2 text-white'
+                  className='bg-branding-dark rounded p-2 text-white'
                   {...register('email')}
                   placeholder='Email'
                 />

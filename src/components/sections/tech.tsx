@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTrail, config, a, useSpring, easings } from 'react-spring'
-import { useIntersectionObserver } from 'usehooks-ts'
+import { useIntersectionObserver, useMediaQuery } from 'usehooks-ts'
 
 type animationProps = {
   open: boolean
@@ -47,6 +47,7 @@ const Icon: React.FC<{ icon: string }> = ({ icon }) => {
   const style = useSpring({
     transform: isHovered ? 'rotateY(180deg)' : 'rotateY(0deg)',
   })
+  const isMedium = useMediaQuery('(min-width: 768px)')
 
   useEffect(() => {
     if (!isHovered) return
@@ -67,8 +68,8 @@ const Icon: React.FC<{ icon: string }> = ({ icon }) => {
       style={style}
       alt={icon}
       src={`/icons/${icon}.svg`}
-      width={40}
-      height={40}
+      width={isMedium ? 60 : 40}
+      height={isMedium ? 60 : 40}
     />
   )
 }
@@ -105,18 +106,19 @@ const Tech = () => {
     <>
       <div className='py-8'></div>
       <div className='flex flex-col justify-center place-items-center' ref={ref}>
-        <div className='max-w-sm p-2'>
-          <h1 className='font-bold text-2xl'>Tech Stack</h1>
+        <div className='max-w-sm md:max-w-lg p-2'>
+          <h1 className='font-bold text-2xl md:text-3xl'>Tech Stack</h1>
           <div className='p-2'></div>
-          <section>Here&apos;s some of the technologies I use and love the most.</section>
+          <section className='md:text-xl'>
+            Here&apos;s some of the technologies I use and love the most.{' '}
+          </section>
           <div className='p-4'></div>
         </div>
-        <AnimatedIcons open={open} containerStyle='grid grid-cols-4 gap-6'>
+        <AnimatedIcons open={open} containerStyle='grid grid-cols-4 gap-6 md:gap-8'>
           {icons.map((icon) => (
             <Icon key={icon} icon={icon} />
           ))}
         </AnimatedIcons>
-        <div className='p-8 sm:p-0'></div>
       </div>
     </>
   )

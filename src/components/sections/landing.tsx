@@ -12,7 +12,7 @@ const Intro: React.FC<{ open: boolean; children: JSX.Element[] }> = ({ open, chi
   return (
     <div>
       {trail.map(({ ...style }, index) => (
-        <a.div key={index} className='relative w-full text-6xl font-bold' style={style}>
+        <a.div key={index} className='w-full text-6xl md:text-7xl font-bold' style={style}>
           <a.div>{children[index]}</a.div>
         </a.div>
       ))}
@@ -30,7 +30,7 @@ const Info: React.FC<{ open: boolean; children: JSX.Element[] }> = ({ open, chil
   return (
     <div className='flex flex-row'>
       {trail.map(({ ...style }, index) => (
-        <a.div key={index} style={style} className='px-4 font-bold'>
+        <a.div key={index} style={style} className='px-4 font-bold md:text-2xl'>
           {children[index]}
         </a.div>
       ))}
@@ -103,7 +103,9 @@ const Landing = () => {
           <span>Veteran</span>
         </Info>
         <div className='p-4'></div>
-        <a.p className='text-xl max-w-sm p-2 text-center' style={{ ...spring }}>
+        <a.p
+          className='text-xl md:text-2xl max-w-sm md:max-w-lg p-2 text-center'
+          style={{ ...spring }}>
           I&apos;m a full-stack developer with a passion for building beautiful, responsive, and
           fast websites.
         </a.p>
