@@ -9,17 +9,16 @@ const Contact = () => {
   const isVisible = !!entry?.isIntersecting
 
   const { register, handleSubmit } = useForm()
-  const [data, setData] = useState<formData>()
 
   useEffect(() => {}, [isVisible])
 
-  const sendEmail = () => {
+  const sendEmail = (data: formData) => {
     fetch('/api/send-email', {
       method: 'POST',
       body: JSON.stringify({
-        name: data?.name ?? 'No name',
-        email: data?.email ?? 'No email',
-        message: data?.message ?? 'No message',
+        name: data?.name,
+        email: data?.email,
+        message: data?.message,
       }),
     })
   }
@@ -35,11 +34,7 @@ const Contact = () => {
             If you have any questions, comments, or concerns, please feel free to reach out to me.
           </p>
           <div className='py-2'></div>
-          <form
-            onSubmit={handleSubmit((data) => {
-              setData(data as formData)
-              sendEmail()
-            })}>
+          <form onSubmit={handleSubmit((data) => sendEmail(data as formData))}>
             <div className='flex flex-col justify-center place-items-center'>
               <div className='grid grid-cols-2'>
                 <input

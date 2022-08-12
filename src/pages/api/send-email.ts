@@ -1,21 +1,17 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import sgMail from '@sendgrid/mail'
 
-type message = {
-  name: string
-  email: string
-  message: string
-}
+const testInfo = (formData: string) => (formData.length > 0 ? formData : 'No data')
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   sgMail.setApiKey(process.env.SENDGRID_API_KEY!)
-  const { name, email, message } = req.body as message
+  const { name, email, message } = JSON.parse(req.body)
 
   const msg = {
     to: process.env.MY_EMAIL!,
     from: process.env.MY_EMAIL!,
-    subject: `Portfolio Contact Form - ${name} - ${email}`,
-    text: message?.length > 0 ? message : 'No message in form',
+    subject: `Portfolio Contact Form - ${testInfo(name)} - ${testInfo(email)}`,
+    text: testInfo(message),
   }
 
   sgMail.send(msg).then(
