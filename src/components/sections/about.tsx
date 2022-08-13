@@ -1,43 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
-import { useTrail, config, a, useSpring, easings } from 'react-spring'
+import { config } from 'react-spring'
 import { useIntersectionObserver } from 'usehooks-ts'
 import AnimatedChildren from '../animated-children'
-
-type animationProps = {
-  open: boolean
-  delay?: number
-  children: JSX.Element[]
-  containerStyle?: string
-  outerStyle?: string
-  innerStyle?: string
-}
-
-// const AnimatedChildren: React.FC<animationProps> = ({
-//   open,
-//   children,
-//   delay,
-//   containerStyle,
-//   outerStyle,
-//   innerStyle,
-// }) => {
-//   const trail = useTrail(children.length, {
-//     config: config.stiff,
-//     opacity: open ? 1 : 0,
-//     x: open ? 0 : 40,
-//     from: { opacity: 0, x: 40 },
-//     delay: open ? delay ?? 0 : 0,
-//   })
-
-//   return (
-//     <div className={containerStyle ?? ''}>
-//       {trail.map(({ ...style }, index) => (
-//         <a.div key={index} className={outerStyle ?? ''} style={style}>
-//           <a.div className={innerStyle ?? ''}>{children[index]}</a.div>
-//         </a.div>
-//       ))}
-//     </div>
-//   )
-// }
 
 const About = () => {
   const [open, setOpen] = useState(false)

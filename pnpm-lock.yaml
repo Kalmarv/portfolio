@@ -9,6 +9,7 @@ specifiers:
   '@types/react-dom': 18.0.5
   '@use-gesture/react': ^10.2.17
   autoprefixer: ^10.4.8
+  embla-carousel-react: ^7.0.0
   eslint: 8.18.0
   eslint-config-next: 12.2.3
   next: 12.2.3
@@ -26,6 +27,7 @@ dependencies:
   '@react-spring/web': 9.5.2_biqbaboplfbrettd7655fr4n2y
   '@sendgrid/mail': 7.7.0
   '@use-gesture/react': 10.2.17_react@18.2.0
+  embla-carousel-react: 7.0.0_react@18.2.0
   next: 12.2.3_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-confetti: 6.1.0_react@18.2.0
@@ -870,6 +872,19 @@ packages:
   /electron-to-chromium/1.4.211:
     resolution: {integrity: sha512-BZSbMpyFQU0KBJ1JG26XGeFI3i4op+qOYGxftmZXFZoHkhLgsSv4DHDJfl8ogII3hIuzGt51PaZ195OVu0yJ9A==}
     dev: true
+
+  /embla-carousel-react/7.0.0_react@18.2.0:
+    resolution: {integrity: sha512-y17TYtqvvziWbDwwfX5dh8n4qU1luytz4+6WWMBnR4pJfLfkKBGsqYNZ4WhmAgUcYL1Uliti8Cjg+NJd46MPxw==}
+    peerDependencies:
+      react: ^18.1.0
+    dependencies:
+      embla-carousel: 7.0.0
+      react: 18.2.0
+    dev: false
+
+  /embla-carousel/7.0.0:
+    resolution: {integrity: sha512-vgyElJaBRTtzWROQuO9Qx/VlibzKdhwnuQ2Ldh5/7/jddrB4XTI6IQlgR5ZglRaXjH4nXjVtUSwWWZMEIZQLFQ==}
+    dev: false
 
   /emoji-regex/9.2.2:
     resolution: {integrity: sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg==}
