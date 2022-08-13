@@ -13,7 +13,7 @@ const Intro: React.FC<{ open: boolean; children: JSX.Element[] }> = ({ open, chi
     <div>
       {trail.map(({ ...style }, index) => (
         <a.div key={index} className='w-full text-6xl md:text-7xl font-bold' style={style}>
-          <a.div>{children[index]}</a.div>
+          <div>{children[index]}</div>
         </a.div>
       ))}
     </div>
@@ -87,7 +87,7 @@ const DownArrow: React.FC<{ isVisible: boolean }> = ({ isVisible }) => {
 const Landing = () => {
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement | null>(null)
-  const entry = useIntersectionObserver(ref, { threshold: 1 })
+  const entry = useIntersectionObserver(ref, { threshold: 0.8 })
   const isVisible = !!entry?.isIntersecting
 
   useEffect(() => {

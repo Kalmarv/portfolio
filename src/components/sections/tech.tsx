@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { config, a, useSpring } from 'react-spring'
+import { a, useSpring } from 'react-spring'
 import { useIntersectionObserver } from 'usehooks-ts'
-import AnimatedChildren from '../animated-children'
 
 const Icon: React.FC<{ icon: string }> = ({ icon }) => {
   const [isHovered, setIsHovered] = useState(false)
@@ -67,7 +66,7 @@ const Tech = () => {
   return (
     <>
       <div className='py-8'></div>
-      <div className='flex flex-col justify-center place-items-center' ref={ref}>
+      <div className='flex flex-col justify-center place-items-center'>
         <div className='max-w-sm md:max-w-lg p-2'>
           <h1 className='font-bold text-2xl md:text-3xl'>Tech Stack</h1>
           <div className='p-2'></div>
@@ -76,18 +75,11 @@ const Tech = () => {
           </section>
           <div className='p-4'></div>
         </div>
-        <AnimatedChildren
-          containerStyle='grid grid-cols-4 gap-6 md:gap-8'
-          trailConfig={{
-            config: config.stiff,
-            opacity: open ? 1 : 0,
-            y: open ? 0 : 40,
-            from: { opacity: 0, y: 40 },
-          }}>
+        <div className='grid grid-cols-4 gap-6 md:gap-8'>
           {icons.map((icon) => (
             <Icon key={icon} icon={icon} />
           ))}
-        </AnimatedChildren>
+        </div>
       </div>
     </>
   )

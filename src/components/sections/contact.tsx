@@ -1,9 +1,7 @@
-import { useEffect, useRef, useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { useIntersectionObserver, useWindowSize } from 'usehooks-ts'
+import { useEffect, useState } from 'react'
 import Confetti from 'react-confetti'
-import AnimatedChildren from '../animated-children'
-import { config } from 'react-spring'
+import { useForm } from 'react-hook-form'
+import { useWindowSize } from 'usehooks-ts'
 
 const WOW: React.FC<{ party: boolean }> = ({ party }) => {
   const { width, height } = useWindowSize()
@@ -22,11 +20,7 @@ const WOW: React.FC<{ party: boolean }> = ({ party }) => {
 }
 
 const Contact = () => {
-  const [open, setOpen] = useState(false)
   type formData = { name: string; email: string; message: string }
-  const ref = useRef<HTMLDivElement | null>(null)
-  const entry = useIntersectionObserver(ref, { threshold: 0.75 })
-  const isVisible = !!entry?.isIntersecting
   const { register, handleSubmit } = useForm()
   const [party, setParty] = useState(false)
 
@@ -34,10 +28,6 @@ const Contact = () => {
     if (party) setParty(true)
     setTimeout(() => setParty(false), 1000)
   }, [party])
-
-  useEffect(() => {
-    if (isVisible) setOpen(true)
-  }, [isVisible])
 
   const sendEmail = (data: formData) => {
     fetch('/api/send-email', {
@@ -55,17 +45,9 @@ const Contact = () => {
     <>
       <WOW party={party} />
       <div className='py-8'></div>
-      <div className='flex flex-col justify-center place-items-center' ref={ref}>
+      <div className='flex flex-col justify-center place-items-center'>
         <div className='max-w-sm md:max-w-lg p-2 w-full'>
-          <AnimatedChildren
-            containerStyle='max-w-sm md:max-w-lg p-2'
-            outerStyle='relative w-full'
-            trailConfig={{
-              config: config.stiff,
-              opacity: open ? 1 : 0,
-              x: open ? 0 : 40,
-              from: { opacity: 0, x: 40 },
-            }}>
+          <div className='max-w-sm md:max-w-lg p-2'>
             <h1 className='text-2xl md:text-3xl font-bold'>Contact Me</h1>
             <div className='py-2'></div>
             <p className='md:text-xl'>
@@ -97,7 +79,7 @@ const Contact = () => {
                 />
               </div>
             </form>
-          </AnimatedChildren>
+          </div>
         </div>
       </div>
       <div className='py-8'></div>

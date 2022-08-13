@@ -66,28 +66,11 @@ const Slider: React.FC<sliderProps> = ({
 }
 
 const Projects = () => {
-  const [open, setOpen] = useState(false)
-  const ref = useRef<HTMLDivElement | null>(null)
-  const entry = useIntersectionObserver(ref, { threshold: 0.5 })
-  const isVisible = !!entry?.isIntersecting
-
-  useEffect(() => {
-    if (isVisible) setOpen(true)
-  }, [isVisible])
-
   return (
     <>
       <div className='py-8'></div>
-      <div className='flex flex-col justify-center place-items-center' ref={ref}>
-        <AnimatedChildren
-          containerStyle='max-w-sm md:max-w-3xl p-2'
-          outerStyle='relative w-full'
-          trailConfig={{
-            config: config.stiff,
-            opacity: open ? 1 : 0,
-            x: open ? 0 : 40,
-            from: { opacity: 0, x: 40 },
-          }}>
+      <div className='flex flex-col justify-center place-items-center'>
+        <div className='max-w-sm md:max-w-3xl p-2'>
           <div className='p-2' />
           <h1 className='font-bold text-2xl md:text-3xl'>Projects</h1>
           <Slider
@@ -100,7 +83,7 @@ const Projects = () => {
             projectName='music-club'
             slides={2}
           />
-        </AnimatedChildren>
+        </div>
       </div>
     </>
   )

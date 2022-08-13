@@ -21,7 +21,7 @@ const AnimatedChildren: React.FC<animationProps> = ({
     <div className={containerStyle ?? ''}>
       {trail.map(({ ...style }, index) => (
         <a.div key={index} className={outerStyle ?? ''} style={style}>
-          <a.div className={innerStyle ?? ''}>{children[index]}</a.div>
+          <div className={innerStyle ?? ''}>{children[index]}</div>
         </a.div>
       ))}
     </div>
