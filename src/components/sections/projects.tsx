@@ -1,5 +1,36 @@
 import useEmblaCarousel from 'embla-carousel-react'
 import Image from 'next/image'
+import { useState, useCallback, useEffect } from 'react'
+
+type navProps = { enabled: boolean; onClick: () => void }
+
+const PrevButton: React.FC<navProps> = ({ enabled, onClick }) => (
+  <button className='' onClick={onClick} disabled={!enabled}>
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      className={`transition h-6 w-6 md:h-10 md:w-10 ${enabled ? 'opacity-100' : 'opacity-50'}`}
+      fill='none'
+      stroke='currentColor'
+      viewBox='0 0 24 24'
+      strokeWidth={2}>
+      <path strokeLinecap='round' strokeLinejoin='round' d='M15 19l-7-7 7-7' />
+    </svg>
+  </button>
+)
+
+const NextButton: React.FC<navProps> = ({ enabled, onClick }) => (
+  <button onClick={onClick} disabled={!enabled}>
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      className={`transition h-6 w-6 md:h-10 md:w-10 ${enabled ? 'opacity-100' : 'opacity-50'}`}
+      stroke='currentColor'
+      fill='none'
+      viewBox='0 0 24 24'
+      strokeWidth={2}>
+      <path strokeLinecap='round' strokeLinejoin='round' d='M9 5l7 7-7 7' />
+    </svg>
+  </button>
+)
 
 type sliderProps = {
   displayName: string
@@ -18,29 +49,51 @@ const Slider: React.FC<sliderProps> = ({
   liveLink,
   githubLink,
 }) => {
-  const [emblaRef] = useEmblaCarousel()
+  const [emblaRef, embla] = useEmblaCarousel()
+  const [prevBtnEnabled, setPrevBtnEnabled] = useState(false)
+  const [nextBtnEnabled, setNextBtnEnabled] = useState(false)
+
+  const scrollPrev = useCallback(() => embla && embla.scrollPrev(), [embla])
+  const scrollNext = useCallback(() => embla && embla.scrollNext(), [embla])
+  const onSelect = useCallback(() => {
+    if (!embla) return
+    setPrevBtnEnabled(embla.canScrollPrev())
+    setNextBtnEnabled(embla.canScrollNext())
+  }, [embla])
+
+  useEffect(() => {
+    if (!embla) return
+    embla.on('select', onSelect)
+    onSelect()
+  }, [embla, onSelect])
 
   return (
     <>
       <h1 className='font-bold text-xl md:text-2xl pt-4'>{displayName}</h1>
       <div className='p-2'></div>
       <p>{description}</p>
-      <div className='p-4'></div>
-
-      <div className='overflow-hidden' ref={emblaRef}>
-        <div className='flex'>
-          {Array.from(Array(slides).keys()).map((_, i) => (
-            <div className='flex flex-grow-0 flex-shrink-0 basis-full' key={i}>
-              <Image
-                src={`/project-images/${projectName}-${i + 1}.webp`}
-                alt='Music Club'
-                width={2300}
-                height={1466}
-              />
-            </div>
-          ))}
+      <div className='p-2'></div>
+      <div className='flex flex-row'>
+        <PrevButton onClick={scrollPrev} enabled={prevBtnEnabled} />
+        <div className='overflow-hidden' ref={emblaRef}>
+          <div className='flex'>
+            {Array.from(Array(slides).keys()).map((_, i) => (
+              <div
+                className='flex flex-grow-0 flex-shrink-0 basis-full hover:cursor-grab active:cursor-grabbing'
+                key={i}>
+                <Image
+                  src={`/project-images/${projectName}-${i + 1}.webp`}
+                  alt='Music Club'
+                  width={2300}
+                  height={1466}
+                />
+              </div>
+            ))}
+          </div>
         </div>
+        <NextButton onClick={scrollNext} enabled={nextBtnEnabled} />
       </div>
+      <div className='p-2' />
       <div className='flex justify-center gap-8'>
         <a
           target='_blank'
@@ -69,6 +122,8 @@ const Projects = () => {
         <div className='max-w-sm md:max-w-3xl p-2'>
           <div className='p-2' />
           <h1 className='font-bold text-2xl md:text-3xl'>Projects</h1>
+          <div className='p-2' />
+          <p>{"Here's some of the projects I've been working on recently"}</p>
           <Slider
             displayName='Music Club'
             liveLink='https://club.kv7.dev/'
