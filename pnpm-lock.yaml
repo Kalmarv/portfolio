@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@hookform/error-message': ^2.0.0
   '@kalmarv/prettier-config': ^1.0.2
   '@react-spring/web': ^9.5.2
   '@sendgrid/mail': ^7.7.0
@@ -24,6 +25,7 @@ specifiers:
   usehooks-ts: ^2.6.0
 
 dependencies:
+  '@hookform/error-message': 2.0.0_rqvpe6ry6xbxbw3uay6gz3efqe
   '@react-spring/web': 9.5.2_biqbaboplfbrettd7655fr4n2y
   '@sendgrid/mail': 7.7.0
   '@use-gesture/react': 10.2.17_react@18.2.0
@@ -81,6 +83,18 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /@hookform/error-message/2.0.0_rqvpe6ry6xbxbw3uay6gz3efqe:
+    resolution: {integrity: sha512-Y90nHzjgL2MP7GFy75kscdvxrCTjtyxGmOLLxX14nd08OXRIh9lMH/y9Kpdo0p1IPowJBiZMHyueg7p+yrqynQ==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+      react-hook-form: ^7.0.0
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      react-hook-form: 7.34.0_react@18.2.0
+    dev: false
 
   /@humanwhocodes/config-array/0.9.5:
     resolution: {integrity: sha512-ObyMyWxZiCu/yTisA7uzx81s40xR2fD5Cg/2Kq7G02ajkNubJf6BopgDTmDyc3U7sXpNKM8cYOw7s7Tyr+DnCw==}

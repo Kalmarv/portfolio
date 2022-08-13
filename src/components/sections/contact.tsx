@@ -1,7 +1,24 @@
+import { ErrorMessage } from '@hookform/error-message'
 import { useEffect, useState } from 'react'
 import Confetti from 'react-confetti'
 import { useForm } from 'react-hook-form'
 import { useWindowSize } from 'usehooks-ts'
+
+const ErrorIcon = () => {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      className='h-5 w-5'
+      viewBox='0 0 20 14'
+      fill='currentColor'>
+      <path
+        fillRule='evenodd'
+        d='M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z'
+        clipRule='evenodd'
+      />
+    </svg>
+  )
+}
 
 const WOW: React.FC<{ party: boolean }> = ({ party }) => {
   const { width, height } = useWindowSize()
@@ -21,7 +38,13 @@ const WOW: React.FC<{ party: boolean }> = ({ party }) => {
 
 const Contact = () => {
   type formData = { name: string; email: string; message: string }
-  const { register, handleSubmit } = useForm()
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({
+    criteriaMode: 'all',
+  })
   const [party, setParty] = useState(false)
 
   useEffect(() => {
@@ -59,20 +82,59 @@ const Contact = () => {
                 <div className='grid grid-cols-2 w-full gap-4'>
                   <input
                     className='bg-branding-dark rounded p-2 text-white md:text-xl'
-                    {...register('name')}
+                    {...register('name', { required: 'Please include a name' })}
                     placeholder='Name'
                   />
                   <input
                     className='bg-branding-dark rounded p-2 text-white md:text-xl'
-                    {...register('email')}
+                    {...register('email', { required: 'Please include an email' })}
                     placeholder='Email'
                   />
                 </div>
                 <textarea
                   className='bg-branding-dark w-full h-40 rounded m-4 p-2 text-white md:text-xl'
-                  {...register('message')}
+                  {...register('message', { required: 'Please include a message' })}
                   placeholder='Type your message here'
                 />
+                <div className='place-self-start flex flex-col gap-2'>
+                  <div className='px-2 font-bold'>
+                    <ErrorMessage
+                      errors={errors}
+                      name='name'
+                      render={({ message }) => (
+                        <div className='flex'>
+                          <ErrorIcon />
+                          <p>{message}</p>
+                        </div>
+                      )}
+                    />
+                  </div>
+                  <div className='px-2 font-bold'>
+                    <ErrorMessage
+                      errors={errors}
+                      name='email'
+                      render={({ message }) => (
+                        <div className='flex'>
+                          <ErrorIcon />
+                          <p>{message}</p>
+                        </div>
+                      )}
+                    />
+                  </div>
+                  <div className='rounded-md px-2 font-bold'>
+                    <ErrorMessage
+                      errors={errors}
+                      name='message'
+                      render={({ message }) => (
+                        <div className='flex'>
+                          <ErrorIcon />
+                          <p>{message}</p>
+                        </div>
+                      )}
+                    />
+                  </div>
+                </div>
+                <div className='py-2'></div>
                 <input
                   className='bg-branding-dark rounded-full px-4 py-2 font-bold text-white'
                   type='submit'

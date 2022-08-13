@@ -1,9 +1,5 @@
 import useEmblaCarousel from 'embla-carousel-react'
 import Image from 'next/image'
-import { useEffect, useRef, useState } from 'react'
-import { config } from 'react-spring'
-import { useIntersectionObserver } from 'usehooks-ts'
-import AnimatedChildren from '../animated-children'
 
 type sliderProps = {
   displayName: string
