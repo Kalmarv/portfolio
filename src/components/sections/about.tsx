@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTrail, config, a, useSpring, easings } from 'react-spring'
 import { useIntersectionObserver } from 'usehooks-ts'
+import AnimatedChildren from '../animated-children'
 
 type animationProps = {
   open: boolean
@@ -11,31 +12,32 @@ type animationProps = {
   innerStyle?: string
 }
 
-const AnimatedChildren: React.FC<animationProps> = ({
-  open,
-  children,
-  delay,
-  containerStyle,
-  outerStyle,
-  innerStyle,
-}) => {
-  const trail = useTrail(children.length, {
-    config: config.stiff,
-    opacity: open ? 1 : 0,
-    x: open ? 0 : 40,
-    from: { opacity: 0, x: 40 },
-    delay: open ? delay ?? 0 : 0,
-  })
-  return (
-    <div className={containerStyle ?? ''}>
-      {trail.map(({ ...style }, index) => (
-        <a.div key={index} className={outerStyle ?? ''} style={style}>
-          <a.div className={innerStyle ?? ''}>{children[index]}</a.div>
-        </a.div>
-      ))}
-    </div>
-  )
-}
+// const AnimatedChildren: React.FC<animationProps> = ({
+//   open,
+//   children,
+//   delay,
+//   containerStyle,
+//   outerStyle,
+//   innerStyle,
+// }) => {
+//   const trail = useTrail(children.length, {
+//     config: config.stiff,
+//     opacity: open ? 1 : 0,
+//     x: open ? 0 : 40,
+//     from: { opacity: 0, x: 40 },
+//     delay: open ? delay ?? 0 : 0,
+//   })
+
+//   return (
+//     <div className={containerStyle ?? ''}>
+//       {trail.map(({ ...style }, index) => (
+//         <a.div key={index} className={outerStyle ?? ''} style={style}>
+//           <a.div className={innerStyle ?? ''}>{children[index]}</a.div>
+//         </a.div>
+//       ))}
+//     </div>
+//   )
+// }
 
 const About = () => {
   const [open, setOpen] = useState(false)
@@ -51,9 +53,14 @@ const About = () => {
     <>
       <div className='flex flex-col justify-center place-items-center' ref={ref}>
         <AnimatedChildren
-          open={open}
           containerStyle='max-w-sm md:max-w-lg p-2'
-          outerStyle='relative w-full'>
+          outerStyle='relative w-full'
+          trailConfig={{
+            config: config.stiff,
+            opacity: open ? 1 : 0,
+            x: open ? 0 : 40,
+            from: { opacity: 0, x: 40 },
+          }}>
           <h1 className='font-bold text-2xl md:text-3xl'>About Me</h1>
           <div className='p-2'></div>
           <section>

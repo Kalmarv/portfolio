@@ -1,46 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
-import { useTrail, config, a, useSpring } from 'react-spring'
+import { config, a, useSpring } from 'react-spring'
 import { useIntersectionObserver } from 'usehooks-ts'
-
-type animationProps = {
-  open: boolean
-  delay?: number
-  children: JSX.Element[]
-  containerStyle?: string
-  outerStyle?: string
-  innerStyle?: string
-}
-
-const AnimatedIcons: React.FC<animationProps> = ({
-  open,
-  children,
-  delay,
-  containerStyle,
-  outerStyle,
-  innerStyle,
-}) => {
-  const [trail, api] = useTrail(
-    children.length,
-    () => ({
-      config: config.stiff,
-      opacity: open ? 1 : 0,
-      y: open ? 0 : 40,
-      from: { opacity: 0, y: 40 },
-      delay: open ? delay ?? 0 : 0,
-    }),
-    [open]
-  )
-
-  return (
-    <div className={containerStyle ?? ''}>
-      {trail.map(({ ...style }, index) => (
-        <a.div key={index} className={outerStyle ?? ''} style={style}>
-          <a.div className={innerStyle ?? ''}>{children[index]}</a.div>
-        </a.div>
-      ))}
-    </div>
-  )
-}
+import AnimatedChildren from '../animated-children'
 
 const Icon: React.FC<{ icon: string }> = ({ icon }) => {
   const [isHovered, setIsHovered] = useState(false)
@@ -115,11 +76,18 @@ const Tech = () => {
           </section>
           <div className='p-4'></div>
         </div>
-        <AnimatedIcons open={open} containerStyle='grid grid-cols-4 gap-6 md:gap-8'>
+        <AnimatedChildren
+          containerStyle='grid grid-cols-4 gap-6 md:gap-8'
+          trailConfig={{
+            config: config.stiff,
+            opacity: open ? 1 : 0,
+            y: open ? 0 : 40,
+            from: { opacity: 0, y: 40 },
+          }}>
           {icons.map((icon) => (
             <Icon key={icon} icon={icon} />
           ))}
-        </AnimatedIcons>
+        </AnimatedChildren>
       </div>
     </>
   )
