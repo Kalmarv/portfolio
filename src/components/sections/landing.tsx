@@ -38,21 +38,36 @@ const Info: React.FC<{ open: boolean; children: JSX.Element[] }> = ({ open, chil
   )
 }
 
-const DownArrow = () => {
+const DownArrow: React.FC<{ isVisible: boolean }> = ({ isVisible }) => {
+  /*
+  Yeah this whole thing is super ugly
+  I have three things happening at the same time:
+  - Delay fade until the first elments fade in
+  - Bounce the arrow up and down
+  - Show/hide the arrow based on if the page is scrolled down
+  */
+  const [delayFade, setDelayFade] = useState(true)
+  useEffect(() => {
+    setTimeout(() => setDelayFade(false), 2000)
+  }, [])
   const style = useSpring({
-    from: { y: 0, opacity: 0 },
+    from: { y: 0 },
     to: async (next) => {
       let toggle = 5
       while (true) {
         await next({
           y: toggle,
-          opacity: 1,
         })
         toggle = toggle === 5 ? 0 : 5
       }
     },
     config: { mass: 75, tension: 500, friction: 0 },
     delay: 2000,
+  })
+  const fadeOnScroll = useSpring({
+    config: config.stiff,
+    opacity: delayFade ? 0 : isVisible ? 1 : 0,
+    from: { opacity: 0 },
   })
 
   return (
@@ -63,7 +78,7 @@ const DownArrow = () => {
       viewBox='0 0 24 24'
       stroke='currentColor'
       strokeWidth={2}
-      style={style}>
+      style={{ ...style, ...fadeOnScroll }}>
       <path strokeLinecap='round' strokeLinejoin='round' d='M19 13l-7 7-7-7m14-8l-7 7-7-7' />
     </a.svg>
   )
@@ -72,7 +87,7 @@ const DownArrow = () => {
 const Landing = () => {
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement | null>(null)
-  const entry = useIntersectionObserver(ref, { threshold: 0.5 })
+  const entry = useIntersectionObserver(ref, { threshold: 1 })
   const isVisible = !!entry?.isIntersecting
 
   useEffect(() => {
@@ -110,7 +125,7 @@ const Landing = () => {
           fast websites.
         </a.p>
         <div className='p-4'></div>
-        <DownArrow />
+        <DownArrow isVisible={isVisible} />
       </div>
     </>
   )
