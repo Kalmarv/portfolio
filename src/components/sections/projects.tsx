@@ -34,18 +34,18 @@ const NextButton: React.FC<navProps> = ({ enabled, onClick }) => (
 
 type sliderProps = {
   displayName: string
-  description: string
   projectName: string
   liveLink: string
   githubLink: string
   slides: number
+  children: JSX.Element
 }
 
 const Slider: React.FC<sliderProps> = ({
   displayName,
   projectName,
   slides,
-  description,
+  children,
   liveLink,
   githubLink,
 }) => {
@@ -71,10 +71,9 @@ const Slider: React.FC<sliderProps> = ({
     <>
       <h1 className='font-bold text-xl md:text-2xl pt-4'>{displayName}</h1>
       <div className='p-2'></div>
-      <p>{description}</p>
+      {children}
       <div className='p-2'></div>
       <div className='flex flex-row'>
-        <PrevButton onClick={scrollPrev} enabled={prevBtnEnabled} />
         <div className='overflow-hidden' ref={emblaRef}>
           <div className='flex'>
             {Array.from(Array(slides).keys()).map((_, i) => (
@@ -91,10 +90,10 @@ const Slider: React.FC<sliderProps> = ({
             ))}
           </div>
         </div>
-        <NextButton onClick={scrollNext} enabled={nextBtnEnabled} />
       </div>
       <div className='p-2' />
       <div className='flex justify-center gap-8'>
+        <PrevButton onClick={scrollPrev} enabled={prevBtnEnabled} />
         <a
           target='_blank'
           rel='noopener noreferrer'
@@ -109,6 +108,7 @@ const Slider: React.FC<sliderProps> = ({
           className='bg-branding-dark rounded-full px-4 py-2 font-bold text-white'>
           Source
         </a>
+        <NextButton onClick={scrollNext} enabled={nextBtnEnabled} />
       </div>
     </>
   )
@@ -128,12 +128,29 @@ const Projects = () => {
             displayName='Music Club'
             liveLink='https://club.kv7.dev/'
             githubLink='https://github.com/Kalmarv/MusicClub'
-            description={
-              'My friends and I started an album listening club and I wanted to make a website to share and track our listening experience.'
-            }
             projectName='music-club'
-            slides={2}
-          />
+            slides={2}>
+            <p>
+              My friends and I started an album listening club and I wanted to make a website to
+              share and track our listening experience.
+            </p>
+          </Slider>
+          <Slider
+            displayName='OverTrack'
+            liveLink='https://overtrack.kalmarv.xyz/'
+            githubLink='https://github.com/Kalmarv/over-track'
+            projectName='overtrack'
+            slides={3}>
+            <p>Overwatch match tracker to track your performance and statistics.</p>
+          </Slider>
+          <Slider
+            displayName='Ascent'
+            liveLink='https://ascent.kalmarv.xyz/'
+            githubLink='https://github.com/Kalmarv/ascent'
+            projectName='ascent'
+            slides={4}>
+            <p>Dynamic 3D display for your currently playing song on Last.fm</p>
+          </Slider>
         </div>
       </div>
     </>
