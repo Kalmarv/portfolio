@@ -15,7 +15,7 @@ const Header = () => {
       <div className='flex p-4 font-bold gap-4'>
         <a
           className='transition w-6 h-6 p-1 bg-branding-dark rounded hover:bg-branding-primary stroke-branding-primary fill-branding-primary hover:stroke-branding-dark hover:fill-branding-dark'
-          href='https://portfolio.kalmarv.xyz/'>
+          href='https://kalmarv.xyz/'>
           <Logo />
         </a>
         <a onClick={() => scroll('home', 0)} className='hover:cursor-pointer'>

@@ -58,7 +58,7 @@ export default function Document() {
           title="Kalmarv's Portfolio"
           description="Kalmarv's Portfolio"
           ogImgPath='/PortfolioOG.png'
-          siteURL='https://portfolio.kalmarv.xyz/'
+          siteURL='https://kalmarv.xyz/'
           theme='#ff8f88'
         />
       </Head>
