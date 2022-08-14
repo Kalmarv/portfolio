@@ -4,6 +4,7 @@
 
 html {
   background: #ff8f88;
+  scroll-behavior: smooth;
 }
 /* Hide scrollbar for Chrome, Safari and Opera */
 *::-webkit-scrollbar {

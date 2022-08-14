@@ -104,7 +104,7 @@ const Landing = () => {
 
   return (
     <>
-      <div className='flex flex-col justify-center h-screen place-items-center' ref={ref}>
+      <div className='flex flex-col justify-center h-screen place-items-center' id='home' ref={ref}>
         <Intro open={open}>
           <span className='text-white'>Hello.</span>
           <span>{"I'm Kalmarv"}</span>

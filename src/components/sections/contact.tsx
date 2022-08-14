@@ -68,7 +68,7 @@ const Contact = () => {
     <>
       <WOW party={party} />
       <div className='py-8'></div>
-      <div className='flex flex-col justify-center place-items-center'>
+      <div id='contact' className='flex flex-col justify-center place-items-center'>
         <div className='max-w-sm md:max-w-lg p-2 w-full'>
           <div className='max-w-sm md:max-w-lg p-2'>
             <h1 className='text-2xl md:text-3xl font-bold'>Contact Me</h1>

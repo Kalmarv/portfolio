@@ -118,12 +118,24 @@ const Projects = () => {
   return (
     <>
       <div className='py-8'></div>
-      <div className='flex flex-col justify-center place-items-center'>
+      <div id='projects' className='flex flex-col justify-center place-items-center'>
         <div className='max-w-sm md:max-w-3xl p-2'>
           <div className='p-2' />
           <h1 className='font-bold text-2xl md:text-3xl'>Projects</h1>
           <div className='p-2' />
           <p>{"Here's some of the projects I've been working on recently"}</p>
+          <Slider
+            displayName='Ascent'
+            liveLink='https://ascent.kalmarv.xyz/'
+            githubLink='https://github.com/Kalmarv/ascent'
+            projectName='ascent'
+            slides={4}>
+            <p>
+              Ascent displays your currently playing song from Last.fm in a rendered 3d scene with
+              custom shaders. I learned a lot through building this project about authentication,
+              fetching data, managing state, and tying together a backend/frontend.
+            </p>
+          </Slider>
           <Slider
             displayName='Music Club'
             liveLink='https://club.kv7.dev/'
@@ -141,15 +153,10 @@ const Projects = () => {
             githubLink='https://github.com/Kalmarv/over-track'
             projectName='overtrack'
             slides={3}>
-            <p>Overwatch match tracker to track your performance and statistics.</p>
-          </Slider>
-          <Slider
-            displayName='Ascent'
-            liveLink='https://ascent.kalmarv.xyz/'
-            githubLink='https://github.com/Kalmarv/ascent'
-            projectName='ascent'
-            slides={4}>
-            <p>Dynamic 3D display for your currently playing song on Last.fm</p>
+            <p>
+              Overwatch match tracker to track your performance and statistics. Currently on hold as
+              Overwatch 2 is coming out, and I&apos;m planning on remaking it with that in mind.
+            </p>
           </Slider>
         </div>
       </div>
