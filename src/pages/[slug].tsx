@@ -1,5 +1,6 @@
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
+import Header from '../components/header'
 import { getAllPosts, getPostData } from '../utils/md-stuff'
 import { PostData } from '../utils/types'
 
@@ -7,13 +8,24 @@ type PostWithContent = PostData & {
   mdxSource: MDXRemoteSerializeResult
 }
 
+const PostWrapper: React.FC<{ children: JSX.Element }> = ({ children }) => (
+  <>
+    <Header />
+    {children}
+  </>
+)
+
 const Post: React.FC<PostWithContent> = ({ data, mdxSource }) => {
   return (
-    <div className='wrapper'>
-      <h1>{data.title}</h1>
-      <time>{data.date}</time>
-      <MDXRemote {...mdxSource} lazy />
-    </div>
+    <PostWrapper>
+      <div>
+        <article className='prose lg:prose-xl mx-4'>
+          <div className='py-10' />
+          <time>{data.date}</time>
+          <MDXRemote {...mdxSource} lazy />
+        </article>
+      </div>
+    </PostWrapper>
   )
 }
 
