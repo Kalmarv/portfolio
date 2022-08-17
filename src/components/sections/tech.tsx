@@ -36,10 +36,6 @@ const Icon: React.FC<{ icon: string }> = ({ icon }) => {
 }
 
 const Tech = () => {
-  const [open, setOpen] = useState(false)
-  const ref = useRef<HTMLDivElement | null>(null)
-  const entry = useIntersectionObserver(ref, { threshold: 0.5 })
-  const isVisible = !!entry?.isIntersecting
   const icons = [
     'TypeScript',
     'JavaScript',
@@ -58,10 +54,6 @@ const Tech = () => {
     'Docker',
     'VSCode',
   ]
-
-  useEffect(() => {
-    if (isVisible) setOpen(true)
-  }, [isVisible])
 
   return (
     <>

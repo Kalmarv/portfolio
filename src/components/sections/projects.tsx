@@ -118,7 +118,8 @@ const Projects = () => {
   return (
     <>
       <div className='py-8'></div>
-      <div id='projects' className='flex flex-col justify-center place-items-center'>
+      <div id='projects' className='relative -top-20'></div>
+      <div className='flex flex-col justify-center place-items-center'>
         <div className='max-w-sm md:max-w-3xl p-2'>
           <div className='p-2' />
           <h1 className='font-bold text-2xl md:text-3xl'>Projects</h1>
