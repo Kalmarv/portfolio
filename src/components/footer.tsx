@@ -32,14 +32,14 @@ const Footer = () => {
           href='https://github.com/Kalmarv'
           target='_blank'
           rel='noopener noreferrer'
-          className='transition w-8 h-8 p-1 bg-branding-dark rounded hover:bg-branding-primary stroke-branding-primary fill-branding-primary hover:stroke-branding-dark hover:fill-branding-dark'>
+          className='transition w-8 h-8 p-1 bg-k-dark rounded hover:bg-k-primary stroke-k-primary fill-k-primary hover:stroke-k-dark hover:fill-k-dark'>
           <Github />
         </a>
         <a
           href='https://twitter.com/Kalmarv7'
           target='_blank'
           rel='noopener noreferrer'
-          className='transition w-8 h-8 p-1 bg-branding-dark rounded hover:bg-branding-primary stroke-branding-primary fill-branding-primary hover:stroke-branding-dark hover:fill-branding-dark'>
+          className='transition w-8 h-8 p-1 bg-k-dark rounded hover:bg-k-primary stroke-k-primary fill-k-primary hover:stroke-k-dark hover:fill-k-dark'>
           <Twitter />
         </a>
       </div>

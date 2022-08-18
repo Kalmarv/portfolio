@@ -98,14 +98,14 @@ const Slider: React.FC<sliderProps> = ({
           target='_blank'
           rel='noopener noreferrer'
           href={liveLink}
-          className='bg-branding-dark rounded-full px-4 py-2 font-bold text-white'>
+          className='bg-k-dark rounded-full px-4 py-2 font-bold text-white'>
           Visit
         </a>
         <a
           target='_blank'
           rel='noopener noreferrer'
           href={githubLink}
-          className='bg-branding-dark rounded-full px-4 py-2 font-bold text-white'>
+          className='bg-k-dark rounded-full px-4 py-2 font-bold text-white'>
           Source
         </a>
         <NextButton onClick={scrollNext} enabled={nextBtnEnabled} />

@@ -19,7 +19,7 @@ const Post: React.FC<PostWithContent> = ({ data, mdxSource }) => {
   return (
     <PostWrapper>
       <div>
-        <article className='prose lg:prose-xl mx-4'>
+        <article className='prose prose-custom sm:prose-lg mx-4'>
           <div className='py-10' />
           <time>{data.date}</time>
           <MDXRemote {...mdxSource} lazy />

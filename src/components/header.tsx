@@ -7,7 +7,7 @@ const Header = () => {
       <div className='flex p-4 font-bold gap-4'>
         <Link href='/'>
           <a
-            className='transition w-6 h-6 p-1 bg-branding-dark rounded hover:bg-branding-primary stroke-branding-primary fill-branding-primary hover:stroke-branding-dark hover:fill-branding-dark'
+            className='transition w-6 h-6 p-1 bg-k-dark rounded hover:bg-k-primary stroke-k-primary fill-k-primary hover:stroke-k-dark hover:fill-k-dark'
             href='https://kalmarv.xyz/'>
             <Logo />
           </a>

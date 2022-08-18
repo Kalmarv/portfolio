@@ -81,18 +81,18 @@ const Contact = () => {
               <div className='flex flex-col justify-center place-items-center'>
                 <div className='grid grid-cols-2 w-full gap-4'>
                   <input
-                    className='bg-branding-dark rounded p-2 text-white md:text-xl'
+                    className='bg-k-dark rounded p-2 text-white md:text-xl'
                     {...register('name', { required: 'Please include a name' })}
                     placeholder='Name'
                   />
                   <input
-                    className='bg-branding-dark rounded p-2 text-white md:text-xl'
+                    className='bg-k-dark rounded p-2 text-white md:text-xl'
                     {...register('email', { required: 'Please include an email' })}
                     placeholder='Email'
                   />
                 </div>
                 <textarea
-                  className='bg-branding-dark w-full h-40 rounded m-4 p-2 text-white md:text-xl'
+                  className='bg-k-dark w-full h-40 rounded m-4 p-2 text-white md:text-xl'
                   {...register('message', { required: 'Please include a message' })}
                   placeholder='Type your message here'
                 />
@@ -136,7 +136,7 @@ const Contact = () => {
                 </div>
                 <div className='py-2'></div>
                 <input
-                  className='bg-branding-dark rounded-full px-4 py-2 font-bold text-white'
+                  className='bg-k-dark rounded-full px-4 py-2 font-bold text-white'
                   type='submit'
                 />
               </div>
