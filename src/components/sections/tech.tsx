@@ -21,7 +21,7 @@ const Icon: React.FC<{ icon: string }> = ({ icon }) => {
   return (
     // because the image is an a.img, also I optimized them myself using SVGOMG
     // eslint-disable-next-line @next/next/no-img-element
-    <div className='w-12 h-12 md:h-14 md:w-14'>
+    <div className='h-12 w-12 md:h-14 md:w-14'>
       <a.img
         onMouseEnter={trigger}
         onTouchStart={trigger}
@@ -58,9 +58,9 @@ const Tech = () => {
   return (
     <>
       <div className='py-8'></div>
-      <div className='flex flex-col justify-center place-items-center'>
-        <div className='max-w-sm md:max-w-lg p-2'>
-          <h1 className='font-bold text-2xl md:text-3xl'>Tech Stack</h1>
+      <div className='flex flex-col place-items-center justify-center'>
+        <div className='max-w-sm p-2 md:max-w-lg'>
+          <h1 className='text-2xl font-bold md:text-3xl'>Tech Stack</h1>
           <div className='p-2'></div>
           <section className='md:text-xl'>
             Here&apos;s some of the technologies I use and love the most.{' '}

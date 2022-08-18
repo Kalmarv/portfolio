@@ -12,7 +12,7 @@ const Intro: React.FC<{ open: boolean; children: JSX.Element[] }> = ({ open, chi
   return (
     <div>
       {trail.map(({ ...style }, index) => (
-        <a.div key={index} className='w-full text-6xl md:text-7xl font-bold' style={style}>
+        <a.div key={index} className='w-full text-6xl font-bold md:text-7xl' style={style}>
           <div>{children[index]}</div>
         </a.div>
       ))}
@@ -104,7 +104,7 @@ const Landing = () => {
 
   return (
     <>
-      <div className='flex flex-col justify-center h-screen place-items-center' id='home' ref={ref}>
+      <div className='flex h-screen flex-col place-items-center justify-center' id='home' ref={ref}>
         <Intro open={open}>
           <span className='text-white'>Hello.</span>
           <span>{"I'm Kalmarv"}</span>
@@ -119,7 +119,7 @@ const Landing = () => {
         </Info>
         <div className='p-4'></div>
         <a.p
-          className='text-xl md:text-2xl max-w-sm md:max-w-lg p-2 text-center'
+          className='max-w-sm p-2 text-center text-xl md:max-w-lg md:text-2xl'
           style={{ ...spring }}>
           I&apos;m a full-stack developer with a passion for building beautiful, responsive, and
           fast websites.

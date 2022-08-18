@@ -40,7 +40,7 @@ const Post: React.FC<PostWithContent> = ({ data, mdxSource }) => {
   return (
     <PostWrapper>
       <div className='flex flex-col place-items-center'>
-        <article className='prose prose-custom sm:prose-lg mx-4'>
+        <article className='prose prose-custom mx-4 sm:prose-lg'>
           <div className='py-10' />
           <div className='flex flex-row gap-4'>
             <BackIcon />

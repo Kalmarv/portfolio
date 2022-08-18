@@ -68,35 +68,35 @@ const Contact = () => {
     <>
       <WOW party={party} />
       <div className='py-8'></div>
-      <div id='contact' className='flex flex-col justify-center place-items-center'>
-        <div className='max-w-sm md:max-w-lg p-2 w-full'>
-          <div className='max-w-sm md:max-w-lg p-2'>
-            <h1 className='text-2xl md:text-3xl font-bold'>Contact Me</h1>
+      <div id='contact' className='flex flex-col place-items-center justify-center'>
+        <div className='w-full max-w-sm p-2 md:max-w-lg'>
+          <div className='max-w-sm p-2 md:max-w-lg'>
+            <h1 className='text-2xl font-bold md:text-3xl'>Contact Me</h1>
             <div className='py-2'></div>
             <p className='md:text-xl'>
               If you have any questions, comments, or concerns, please feel free to reach out to me.
             </p>
             <div className='py-2'></div>
             <form onSubmit={handleSubmit((data) => sendEmail(data as formData))}>
-              <div className='flex flex-col justify-center place-items-center'>
-                <div className='grid grid-cols-2 w-full gap-4'>
+              <div className='flex flex-col place-items-center justify-center'>
+                <div className='grid w-full grid-cols-2 gap-4'>
                   <input
-                    className='bg-k-dark rounded p-2 text-white md:text-xl'
+                    className='rounded bg-k-dark p-2 text-white md:text-xl'
                     {...register('name', { required: 'Please include a name' })}
                     placeholder='Name'
                   />
                   <input
-                    className='bg-k-dark rounded p-2 text-white md:text-xl'
+                    className='rounded bg-k-dark p-2 text-white md:text-xl'
                     {...register('email', { required: 'Please include an email' })}
                     placeholder='Email'
                   />
                 </div>
                 <textarea
-                  className='bg-k-dark w-full h-40 rounded m-4 p-2 text-white md:text-xl'
+                  className='m-4 h-40 w-full rounded bg-k-dark p-2 text-white md:text-xl'
                   {...register('message', { required: 'Please include a message' })}
                   placeholder='Type your message here'
                 />
-                <div className='place-self-start flex flex-col gap-2'>
+                <div className='flex flex-col gap-2 place-self-start'>
                   <div className='px-2 font-bold'>
                     <ErrorMessage
                       errors={errors}
@@ -136,7 +136,7 @@ const Contact = () => {
                 </div>
                 <div className='py-2'></div>
                 <input
-                  className='bg-k-dark rounded-full px-4 py-2 font-bold text-white'
+                  className='rounded-full bg-k-dark px-4 py-2 font-bold text-white'
                   type='submit'
                 />
               </div>

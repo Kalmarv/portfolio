@@ -2,9 +2,9 @@ const About = () => {
   return (
     <>
       <div id='about' className='relative -top-20'></div>
-      <div className='flex flex-col justify-center place-items-center'>
-        <div className='max-w-sm md:max-w-lg p-2'>
-          <h1 className='font-bold text-2xl md:text-3xl'>About Me</h1>
+      <div className='flex flex-col place-items-center justify-center'>
+        <div className='max-w-sm p-2 md:max-w-lg'>
+          <h1 className='text-2xl font-bold md:text-3xl'>About Me</h1>
           <div className='p-2'></div>
           <section>
             <p className='md:text-xl'>

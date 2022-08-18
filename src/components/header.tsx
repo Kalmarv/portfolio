@@ -4,10 +4,10 @@ import Logo from './logo'
 const Header = () => {
   return (
     <div className='fixed top-0 left-0 z-50 w-full backdrop-blur-md'>
-      <div className='flex p-4 font-bold gap-4'>
+      <div className='flex gap-4 p-4 font-bold'>
         <Link href='/'>
           <a
-            className='transition w-6 h-6 p-1 bg-k-dark rounded hover:bg-k-primary stroke-k-primary fill-k-primary hover:stroke-k-dark hover:fill-k-dark'
+            className='h-6 w-6 rounded bg-k-dark fill-k-primary stroke-k-primary p-1 transition hover:bg-k-primary hover:fill-k-dark hover:stroke-k-dark'
             href='https://kalmarv.xyz/'>
             <Logo />
           </a>

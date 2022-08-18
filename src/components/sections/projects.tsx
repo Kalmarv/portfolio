@@ -8,7 +8,7 @@ const PrevButton: React.FC<navProps> = ({ enabled, onClick }) => (
   <button className='' onClick={onClick} disabled={!enabled}>
     <svg
       xmlns='http://www.w3.org/2000/svg'
-      className={`transition h-6 w-6 md:h-10 md:w-10 ${enabled ? 'opacity-100' : 'opacity-50'}`}
+      className={`h-6 w-6 transition md:h-10 md:w-10 ${enabled ? 'opacity-100' : 'opacity-50'}`}
       fill='none'
       stroke='currentColor'
       viewBox='0 0 24 24'
@@ -22,7 +22,7 @@ const NextButton: React.FC<navProps> = ({ enabled, onClick }) => (
   <button onClick={onClick} disabled={!enabled}>
     <svg
       xmlns='http://www.w3.org/2000/svg'
-      className={`transition h-6 w-6 md:h-10 md:w-10 ${enabled ? 'opacity-100' : 'opacity-50'}`}
+      className={`h-6 w-6 transition md:h-10 md:w-10 ${enabled ? 'opacity-100' : 'opacity-50'}`}
       stroke='currentColor'
       fill='none'
       viewBox='0 0 24 24'
@@ -69,7 +69,7 @@ const Slider: React.FC<sliderProps> = ({
 
   return (
     <>
-      <h1 className='font-bold text-xl md:text-2xl pt-4'>{displayName}</h1>
+      <h1 className='pt-4 text-xl font-bold md:text-2xl'>{displayName}</h1>
       <div className='p-2'></div>
       {children}
       <div className='p-2'></div>
@@ -78,7 +78,7 @@ const Slider: React.FC<sliderProps> = ({
           <div className='flex'>
             {Array.from(Array(slides).keys()).map((_, i) => (
               <div
-                className='flex flex-grow-0 flex-shrink-0 basis-full hover:cursor-grab active:cursor-grabbing'
+                className='flex flex-shrink-0 flex-grow-0 basis-full hover:cursor-grab active:cursor-grabbing'
                 key={i}>
                 <Image
                   src={`/project-images/${projectName}-${i + 1}.webp`}
@@ -98,14 +98,14 @@ const Slider: React.FC<sliderProps> = ({
           target='_blank'
           rel='noopener noreferrer'
           href={liveLink}
-          className='bg-k-dark rounded-full px-4 py-2 font-bold text-white'>
+          className='rounded-full bg-k-dark px-4 py-2 font-bold text-white'>
           Visit
         </a>
         <a
           target='_blank'
           rel='noopener noreferrer'
           href={githubLink}
-          className='bg-k-dark rounded-full px-4 py-2 font-bold text-white'>
+          className='rounded-full bg-k-dark px-4 py-2 font-bold text-white'>
           Source
         </a>
         <NextButton onClick={scrollNext} enabled={nextBtnEnabled} />
@@ -119,10 +119,10 @@ const Projects = () => {
     <>
       <div className='py-8'></div>
       <div id='projects' className='relative -top-20'></div>
-      <div className='flex flex-col justify-center place-items-center'>
-        <div className='max-w-sm md:max-w-3xl p-2'>
+      <div className='flex flex-col place-items-center justify-center'>
+        <div className='max-w-sm p-2 md:max-w-3xl'>
           <div className='p-2' />
-          <h1 className='font-bold text-2xl md:text-3xl'>Projects</h1>
+          <h1 className='text-2xl font-bold md:text-3xl'>Projects</h1>
           <div className='p-2' />
           <p>{"Here's some of the projects I've been working on recently"}</p>
           <Slider
