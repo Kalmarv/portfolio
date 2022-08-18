@@ -10,15 +10,19 @@ const BlogPosts: React.FC<Posts> = ({ posts }) => {
       <div className='py-16' />
       <div className='flex justify-center'>
         <div className='flex flex-col mx-8'>
-          <h1 className='font-bold text-4xl'>Couple random things I&apos;ve written</h1>
+          <h1 className='font-bold text-4xl'>Random things I&apos;ve written</h1>
           <div className='py-4' />
           {posts.map((post) => (
             <div key={post.slug} className='py-4'>
               <h1 className='font-bold text-2xl'>{post.data.title}</h1>
               <p>{post.data.description}</p>
-              <Link href='/[slug]' as={`/${post.slug}`}>
-                <a className='font-bold underline'>Read more</a>
-              </Link>
+              <div className='py-2' />
+              <div className='flex flex-row justify-between'>
+                <Link href='/[slug]' as={`/${post.slug}`}>
+                  <a className='font-bold underline text-xl'>Read more</a>
+                </Link>
+                <p>{post.data.date}</p>
+              </div>
             </div>
           ))}
         </div>
