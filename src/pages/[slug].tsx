@@ -2,6 +2,7 @@ import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
 import { serialize } from 'next-mdx-remote/serialize'
 import Link from 'next/link'
 import Header from '../components/header'
+import Code from '../components/highlight'
 import { getAllPosts, getPostData } from '../utils/md-stuff'
 import { PostData } from '../utils/types'
 
@@ -36,6 +37,8 @@ const PostWrapper: React.FC<{ children: JSX.Element }> = ({ children }) => (
   </>
 )
 
+const components = { Code }
+
 const Post: React.FC<PostWithContent> = ({ data, mdxSource }) => {
   return (
     <PostWrapper>
@@ -47,7 +50,7 @@ const Post: React.FC<PostWithContent> = ({ data, mdxSource }) => {
             <time>{data.date}</time>
           </div>
           <div className='p-1' />
-          <MDXRemote {...mdxSource} lazy />
+          <MDXRemote {...mdxSource} components={components} lazy />
         </article>
       </div>
     </PostWrapper>
