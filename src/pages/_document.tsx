@@ -46,6 +46,11 @@ const HTMLHead: React.FC<documentProps> = ({
       <link rel='manifest' href='/site.webmanifest' />
       <meta name='msapplication-TileColor' content={theme} />
       <meta name='theme-color' content='#ffffff' />
+      <script
+        async
+        defer
+        data-website-id='fc2a2771-6c6c-4498-876b-dbce4af04926'
+        src='https://umami-production-84c6.up.railway.app/umami.js'></script>
     </>
   )
 }
